@@ -1,15 +1,33 @@
-import React,{ useState } from "react";
-import {SafeAreaView, View, Text, TouchableOpacity, Keyboard, TouchableWithoutFeedback,Image} from "react-native";
+import React, { useState } from "react";
+import { SafeAreaView, View, Image, FlatList } from "react-native";
 import { useNavigation, useRoute } from '@react-navigation/native';
+import InputSearch from "../components/InputSearch";
 //styles
 import styles from "../styles/styles";
 const Home = () => {
-    return(
-        <SafeAreaView>
-            <Image 
-            style={styles.imageHome}
-            src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fvecgroup.vn%2Fsan-the-thao%2Fkich-thuoc-san-bong-da-11-nguoi-chuan-fifa-n72.html&psig=AOvVaw01XajougqXRcBphrXu9M4N&ust=1719909015929000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCPCU7MC2hYcDFQAAAAAdAAAAABAE"
+    const [search, setSearch] = useState('');
+    const [arrFootball, setArrFootball] = useState([]);
+    return (
+        <SafeAreaView style={styles.container}>
+            <Image
+                style={styles.imageHome}
+                source={{ uri: 'https://vecgroup.vn/upload_images/images/2021/12/09/kich-thuoc-san-bong-11-nguoi(1).png' }}
             />
+            <View style={styles.inputView}>
+                <InputSearch
+                    value={search}
+                    onChangeText={(text) => setSearch(text)}
+                />
+                <FlatList
+                    data={arrFootball}
+                    renderItem={({ item }) => (
+                        <View>
+                            
+                        </View>
+                    )}
+                />
+            </View>
+
         </SafeAreaView>
     )
 }

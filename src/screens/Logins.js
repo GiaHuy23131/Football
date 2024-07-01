@@ -6,8 +6,10 @@ import styles from "../styles/styles";
 //Components
 import InputComponent from "../components/InputComponents";
 import ButtonConfirm from "../components/ButtonConfirm";
-//
+//controller
 import ModuleUserAuth from "../controller/ModuleUserAuth";
+//Models
+import UserAuth from "../models/UserAuth";
 
 const Logins = () => {
     const navigation = useNavigation(); // Sử dụng hook navigation
@@ -15,8 +17,7 @@ const Logins = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const handleLogin = (email,password) => {
-        moduleUserAuth.loginAuth(email,password);
-        navigation.navigate('VerificationOTP');
+        moduleUserAuth.loginAuth(email,password,navigation);
     }
     return (
         //Close keyborad

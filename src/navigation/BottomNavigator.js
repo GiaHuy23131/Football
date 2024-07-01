@@ -1,26 +1,21 @@
 import * as React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/Feather';
 //Screens
-import Register from '../screens/Register';
-import Logins from '../screens/Logins';
-import Address from '../screens/Address';
-import ForgotPassword from '../screens/FotgotPassword';
-import RestPassword from '../screens/RestPassword';
-import VerificationOTP from '../screens/VerificationOTP';
-const Stack = createStackNavigator();
-function BottomNavigator() { 
+import Home from '../screens/Home';
+const Tab = createBottomTabNavigator();
+const BottomNavigator = () => {
     return (
-        <NavigationContainer>
-            <Stack.Navigator initialRouteName='Login' screenOptions={{headerShown : false}}>
-                <Stack.Screen name='Login' component={Logins} />
-                <Stack.Screen name='Register' component={Register} />
-                <Stack.Screen name='Address' component={Address} />
-                <Stack.Screen name='ForgotPassword' component={ForgotPassword} />
-                <Stack.Screen name='RestPassword' component={RestPassword} />
-                <Stack.Screen name='VerificationOTP' component={VerificationOTP} />
-            </Stack.Navigator>
-        </NavigationContainer>
+        <Tab.Navigator screenOptions={{headerShown : false}}>
+            <Tab.Screen  name="Home" component={Home} options={{
+                tabBarLabel: "Trang Chủ",
+                tabBarIcon: () => {
+                    return(
+                        <Icon name="home" size={30} color="#000000" />
+                    )
+                }
+            }} />
+        </Tab.Navigator>
     )
 
 }

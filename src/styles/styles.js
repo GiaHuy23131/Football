@@ -25,7 +25,9 @@ const styles = StyleSheet.create({
         margin: 10,
     },
     textInput: {
+        marginLeft: 10,
         fontSize: 18,
+        flex: 1,
     },
     titleInput: {
         fontSize: 20,
@@ -38,6 +40,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         padding: 10,
         borderRadius: 10,
+        marginTop: '5%',
     },
     errorIcon: {
         marginLeft: 'auto',
@@ -99,6 +102,35 @@ const styles = StyleSheet.create({
         flexGrow: 1,
         paddingBottom: 100,
     },
-    
+    imageHome: {
+        width: '100%',
+        height: 150,
+    },
+    information: {
+        marginTop: 20,
+    },
+    logout: {
+        backgroundColor: '#D9D9D9',
+        justifyContent: 'flex-end',  // Đưa nút logout xuống dưới cùng
+    },
+    content: {
+        flex: 1,
+    },
+    username: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginVertical: 10,
+        marginLeft: '5%',
+    },
+    line: {
+        width: '100%',
+        height: 1,
+        backgroundColor: '#ccc',
+        marginBottom: 10,
+    },
+    userContent: {
+        flexDirection: 'row',
+    },
+
 });
 export default styles;
