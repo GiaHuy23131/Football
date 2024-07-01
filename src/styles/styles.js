@@ -93,8 +93,12 @@ const styles = StyleSheet.create({
     buttonBackView: {
     },
     buttonBack: {
-        marginTop: '10%',
         marginLeft: '1%',
     },
+    scrollViewContent: {
+        flexGrow: 1,
+        paddingBottom: 100,
+    },
+    
 });
 export default styles;

@@ -1,47 +1,14 @@
+import AddressRegister from "./AddressRegister.js";
 class UserAuth{
-    constructor(idUserAuth,user,name,phone,account,password){
+    constructor(idUserAuth,user,name,phone,email,password){
         this.idUserAuth = idUserAuth;
         this.user = user;
         this.name = name;
         this.phone = phone;
-        this.account = account;
+        this.email = email;
         this.password = password;
-    }
-    setIdUserAuth (idUserAuth){
-        this.idUserAuth = idUserAuth;
-    }
-    getIdUserAuth(){
-        return this.idUserAuth;
-    }
-    setUser(user){
-        this.user = user;
-    }
-    getUser(){
-        return this.user;
-    }
-    setName(name){
-        this.name = name;
-    }
-    getName(){
-        return this.name;
-    }
-    setPhone(phone){
-        this.phone = phone;
-    }
-    getPhone(){
-        return this.phone;
-    }
-    setAccount(account){
-        this.account = account;
-    }
-    getAccount(){
-        return this.account;
-    }
-    setPassword(password){
-        this.password = password;
-    }
-    getPassword(){
-        return this.password;
+        // this.address = new AddressRegister(address.city, address.district, address.wards, address.specificAddress);
     }
 }
+
 export default UserAuth;

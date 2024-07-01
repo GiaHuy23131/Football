@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import { View, Text, TouchableOpacity, Keyboard, TouchableWithoutFeedback } from "react-native";
+import { SafeAreaView, View, Text, TouchableOpacity, Keyboard, TouchableWithoutFeedback } from "react-native";
 import { useNavigation, useRoute } from '@react-navigation/native';
 //styles
 import styles from "../styles/styles";
@@ -25,7 +25,7 @@ const RestPassword = () => {
     return (
         //Close keyborad
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <View style={styles.container}>
+            <SafeAreaView style={styles.container}>
                 <ButtonBack  />
                 <Text style={styles.titleRegister}>Đặt Lại Mật Khẩu</Text>
                 <Text style={{textAlign: 'center', fontSize: 20}}>Số điện thoại: {phone}</Text>
@@ -52,7 +52,7 @@ const RestPassword = () => {
                     title="Xác nhận"
                 />  
 
-            </View>
+            </SafeAreaView>
         </TouchableWithoutFeedback>
     )
 }

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { useNavigation } from '@react-navigation/native'
 import { NavigationContainer } from '@react-navigation/native';
 //Screens
 import Register from '../screens/Register';
@@ -10,7 +9,7 @@ import ForgotPassword from '../screens/FotgotPassword';
 import RestPassword from '../screens/RestPassword';
 import VerificationOTP from '../screens/VerificationOTP';
 const Stack = createStackNavigator();
-function StackNavigator() { 
+function BottomNavigator() { 
     return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName='Login' screenOptions={{headerShown : false}}>
@@ -25,4 +24,4 @@ function StackNavigator() {
     )
 
 }
-export default StackNavigator;
+export default BottomNavigator;
