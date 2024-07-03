@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import Error from 'react-native-vector-icons/MaterialIcons';
+import { AutoGrowingTextInput } from 'react-native-autogrow-textinput';
 //styles
 import styles from "../styles/styles";
-const InputComponent = ({key, title, error, value, onChangeText, placeholder, keyboardType, notification}) => {
+const InputDescription = ({key, title, error, value, onChangeText, placeholder, keyboardType, notification}) => {
     return (
         <View key={key} style={styles.inputView}>
             <Text style={styles.titleInput}>{title}</Text>
-            <View style={styles.inputContainer}>
-                <TextInput
+            <View style={styles.inputDescription}>
+                <AutoGrowingTextInput
                     style={styles.textInput}
                     value={value} 
                     keyboardType={keyboardType}
@@ -26,4 +27,4 @@ const InputComponent = ({key, title, error, value, onChangeText, placeholder, ke
         </View>
     )
 }
-export default InputComponent;
+export default InputDescription;

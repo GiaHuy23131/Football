@@ -5,9 +5,6 @@ import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 //styles
 import styles from '../styles/styles';
-//firebase
-import { signOut } from 'firebase/auth';
-import { auth } from '../firebase/firebaseConfig';
 
 const ButtonUser = ({ user }) => {
     const navigation = useNavigation();

@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 //styles
 import styles from "../styles/styles";
-const InputInformation = ({ title, editable, value, onChangeText, placeholder, keyboardType, notification }) => {
+const InputInformation = ({key, title, editable, value, onChangeText, placeholder, keyboardType, notification }) => {
     return (
         <View style={styles.inputContainer}>
             <Text style={styles.titleInput}>{title}</Text>
             <TextInput
+                key={key}
                 style={styles.textInput}
                 value={value}
                 keyboardType={keyboardType}

@@ -1,7 +1,7 @@
 import { Alert } from "react-native";
 import { child, push, ref, set, remove, update, onValue } from "firebase/database";
 import { database, auth } from "../firebase/firebaseConfig";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile} from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 export default class ModuleUserAuth {
 
     constructor() {
@@ -18,7 +18,7 @@ export default class ModuleUserAuth {
                 else {
                     navigation.navigate('BottomNavigator');
                 }
-                console.log('user',user);
+                console.log('user', user);
                 Alert.alert('Đăng nhập thành công');
             })
             .catch((error) => {
@@ -29,7 +29,7 @@ export default class ModuleUserAuth {
             });
     }
 
-      registerAuth(userAuth) {
+    registerAuth(userAuth) {
         try {
             createUserWithEmailAndPassword(auth, userAuth.email, userAuth.password)
                 .then(async (userCredential) => {
@@ -47,12 +47,7 @@ export default class ModuleUserAuth {
                             phone: userAuth.phone,
                             email: user.email,
                             password: userAuth.password,
-                            // address: {
-                            //     city: userAuth.address.city,
-                            //     district: userAuth.address.district,
-                            //     wards: userAuth.address.wards,
-                            //     specificAddress: userAuth.address.specificAddress
-                            // }
+                            address: userAuth.address,
                         }).then(() => {
                             console.log('User registered:', user);
                             Alert.alert('Đăng ký thành công');
@@ -71,6 +66,22 @@ export default class ModuleUserAuth {
         } catch (error) {
             console.log(error);
         }
-
+    }
+    updateAuth(userAuth) {
+        try {
+            update(ref(database, 'UserAuth/' + userAuth.idUserAuth), {
+                name: userAuth.name,
+                phone: userAuth.phone,
+                email: userAuth.email,
+                password: userAuth.password,
+                address: userAuth.address,
+            }).then(() => {
+                Alert.alert('Sửa thành công')
+            }).catch((error) => {
+                console.error(error);
+            });
+        } catch (error) {
+            console.error(error);
+        }
     }
 }

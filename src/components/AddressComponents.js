@@ -7,7 +7,7 @@ const AddressComponents = ({title, address, onPress}) => {
         <View style={styles.inputView}>
             <Text style={styles.titleInput}>{title}</Text>
             <TouchableOpacity style={styles.inputContainer} onPress={onPress}>
-                <Text>{address}</Text>
+                <Text style={styles.textInput}>{address}</Text>
             </TouchableOpacity>
         </View>
     )

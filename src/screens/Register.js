@@ -12,18 +12,14 @@ import ButtonConfirmDown from "../components/ButtonConfirmDown";
 import ButtonBack from "../components/ButtonBack";
 //Models
 import UserAuth from "../models/UserAuth";
+import Address from "../models/Address";
 //Modules
 import ModuleUserAuth from "../controller/ModuleUserAuth";
-//firebase
-import { auth } from "../firebase/firebaseConfig";
-import { signInWithPhoneNumber, RecaptchaVerifier, PhoneAuthCredential} from 'firebase/auth';
-
 
 const Register = () => {
     const navigation = useNavigation(); // Sử dụng hook navigation
     const route = useRoute();
     // Lấy dữ liệu từ route.params
-    const { arrAddress } = route.params ?? '';
     const [moduleUserAuth] = useState(new ModuleUserAuth());
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState(null);
@@ -38,13 +34,32 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordAgain, setPasswordAgain] = useState('');
-    const [address, setAddres] = useState([]);
+    const [city, setCity] = useState('');
+    const [district,setDistrict] = useState('');
+    const [wards,setWards] = useState('');
+    const [specificAddress,setSpecificAddress] = useState('');
+    //tạo fields map
+    const fields = [
+        { title: "Tên", placeholder: "Nhập tên", value: name, onChangeText: (text) => setName(text) },
+        { title: "Số điện thoại", placeholder: "Nhập số điện thoại", value: phone, onChangeText: (text) => setPhone(text) },
+        { title: "Email", placeholder: "Nhập email", value: email, onChangeText: (text) => setEmail(text) },
+        { title: "Mật khẩu", placeholder: "Nhập mật khẩu", value: password, onChangeText: (text) => setPassword(text) },
+        { title: "Nhập lại mật khẩu", placeholder: "Nhập lại mật khẩu", value: passwordAgain, onChangeText: (text) => setPasswordAgain(text) },
+        //Nếu là User =[] ngược lại...
+        ...(user === '' || user === "User" ? [] : [
+            { title: "Tỉnh/Thành phố", placeholder: "Nhập tỉnh/thành phố", value: city, onChangeText: (text) => setCity(text) },
+            { title: "Quận/Huyện", placeholder: "Nhập quận/huyện", value: district, onChangeText: (text) => setDistrict(text) },
+            { title: "Phường/Xã", placeholder: "Nhập phường/xã", value: wards, onChangeText: (text) => setWards(text) },
+            { title: "Địa chỉ cụ thể (Số nhà, Tên đường, Khu vực)", placeholder: "Nhập địa chỉ cụ thể", value: specificAddress, onChangeText: (text) => setSpecificAddress(text) }
+        ])
+    ].filter(Boolean);// Loại bỏ các phần tử null
     //
     const handleRegisterAuth = async () => {
-        const userAuth = new UserAuth(idUserAuth,user,name,phone,email,password);;
+        const address = new Address(city,district,wards,specificAddress);
+        const userAuth = new UserAuth(idUserAuth, user, name, phone, email, password,address);
         moduleUserAuth.registerAuth(userAuth);
         navigation.navigate('Login');
-        
+
     };
     //check Password Again
     const checkPasswordAgain = () => {
@@ -61,6 +76,7 @@ const Register = () => {
 
                 <DropDownPickerComponents
                     title="Bạn là ai?"
+                    size={70}
                     open={open}
                     value={value}
                     items={items}
@@ -70,45 +86,15 @@ const Register = () => {
                     onChangeValue={(item) => { setUser(item) }}//xử lý được chọn
                 />
                 <KeyboardAwareScrollView contentContainerStyle={styles.scrollViewContent}>
-                    <InputComponent
-                        title="Tên"
-                        placeholder="Nhập tên"
-                        value={name}
-                        onChangeText={(text) => setName(text)}
-                    />
-                    <InputComponent
-                        title="Số điện thoại"
-                        placeholder="Nhập số điện thoại"
-                        keyboardType="numeric"
-                        value={phone}
-                        onChangeText={(text) => setPhone(text)}
-                    />
-                    <InputComponent
-                        title="Email"
-                        placeholder="Nhập email"
-                        value={email}
-                        onChangeText={(text) => setEmail(text)}
-                    />
-                    <InputComponent
-                        title="Mật khẩu"
-                        placeholder="Nhập mật khẩu"
-                        value={password}
-                        onChangeText={(text) => setPassword(text)}
-                    />
-                    <InputComponent
-                        title="Nhập lại mật khẩu"
-                        placeholder="Nhập lại mật khẩu"
-                        error={checkPasswordAgain()}
-                        value={passwordAgain}
-                        onChangeText={(text) => setPasswordAgain(text)}
-                    />
-                    {user === '' || user === "User" ? null : (
-                        <AddressComponents
-                            title="Địa chỉ"
-                            address={(arrAddress && arrAddress.length > 0) ? arrAddress[0].specificAddress : "Nhấn vào để nhập địa chỉ"}
-                            onPress={() => navigation.navigate('Address')}
+                    {fields.map((field, index) => (
+                        <InputComponent
+                            key={index}
+                            title={field.title}
+                            placeholder={field.placeholder}
+                            value={field.value}
+                            onChangeText={field.onChangeText}
                         />
-                    )}
+                    ))}
                 </KeyboardAwareScrollView>
                 <ButtonConfirmDown
                     title="Xác nhận"

@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
         margin: 10,
     },
     textInput: {
-        marginLeft: 10,
+        marginLeft: 5,
         fontSize: 18,
         flex: 1,
     },
@@ -40,7 +40,15 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         padding: 10,
         borderRadius: 10,
-        marginTop: '5%',
+    },
+    inputDescription: {
+        flexDirection: 'row',
+        backgroundColor: 'white',
+        height: 80,
+        width: '100%',
+        borderWidth: 1,
+        padding: 10,
+        borderRadius: 10,
     },
     errorIcon: {
         marginLeft: 'auto',
@@ -107,7 +115,7 @@ const styles = StyleSheet.create({
         height: 150,
     },
     information: {
-        marginTop: 20,
+        marginTop: '5%',
     },
     logout: {
         backgroundColor: '#D9D9D9',
