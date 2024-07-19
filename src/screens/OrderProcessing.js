@@ -8,7 +8,6 @@ const OrderProcessing = () => {
     return (
         <SafeAreaView style={styles.container}>
             <Text>Đây là admin</Text>
-
         </SafeAreaView>
     )
 }

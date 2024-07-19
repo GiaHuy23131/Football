@@ -39,10 +39,13 @@ const ForgotPassword = () => {
                     error={checkPhone()}
                     notification={notification}
                 />
-                <ButtonConfirm
-                    onPress={() => handlePhone(phone)}
-                    title="Tiếp theo"
-                />
+                <View style={styles.buttonView}>
+                    <ButtonConfirm
+                        onPress={() => handlePhone(phone)}
+                        title="Tiếp theo"
+                    />
+                </View>
+
 
             </SafeAreaView>
         </TouchableWithoutFeedback>

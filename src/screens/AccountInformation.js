@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { SafeAreaView, View,} from "react-native";
+import { SafeAreaView, View, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { useRoute } from '@react-navigation/native';
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+
 //components
 import ButtonConfirm from "../components/ButtonConfirm";
 import InputInformation from "../components/InputInformation";
@@ -96,20 +98,32 @@ const AccountInformation = () => {
             { title: "Địa chỉ cụ thể", value: specificAddress, onChangeText: (text) => setSpecificAddress(text) }
         ] : [])
     ].filter(Boolean);
+    // console.log('info',info);
     return (
-        <SafeAreaView style={styles.container}>
-            {fields.map((field, index) => (
-                <View key={index} style={styles.information}>
-                    <InputInformation
-                        title={field.title}
-                        value={field.value}
-                        editable={info}
-                        onChangeText={field.onChangeText}
-                    />
-                </View>
-            ))}
-            {info && <ButtonConfirm title="Xác nhận" onPress={handleConfirmInfo} />}
-        </SafeAreaView>
+        //Close keyborad
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <SafeAreaView style={styles.container}> 
+
+                <KeyboardAwareScrollView contentContainerStyle={styles.scrollViewContent}>
+                    <View style={styles.container1}>
+                        {fields.map((field, index) => (
+                            <View key={index} style={styles.information}>
+                                <InputInformation
+                                    title={field.title}
+                                    value={field.value}
+                                    editable={info}
+                                    onChangeText={field.onChangeText}
+                                />
+                            </View>
+                        ))}
+                        <View style={styles.buttonView}>
+                            {info && <ButtonConfirm title="Xác nhận" onPress={handleConfirmInfo} />}
+                        </View>
+                    </View>
+                </KeyboardAwareScrollView>
+
+            </SafeAreaView>
+        </TouchableWithoutFeedback>
     )
 }
 export default AccountInformation;

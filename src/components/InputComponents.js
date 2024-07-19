@@ -4,9 +4,9 @@ import Feather from 'react-native-vector-icons/Feather';
 import Error from 'react-native-vector-icons/MaterialIcons';
 //styles
 import styles from "../styles/styles";
-const InputComponent = ({key, title, error, value, onChangeText, placeholder, keyboardType, notification}) => {
+const InputComponent = ({componentKey, title, error, value, onChangeText, placeholder, keyboardType, notification}) => {
     return (
-        <View key={key} style={styles.inputView}>
+        <View key={componentKey} style={styles.inputView}>
             <Text style={styles.titleInput}>{title}</Text>
             <View style={styles.inputContainer}>
                 <TextInput
@@ -17,9 +17,9 @@ const InputComponent = ({key, title, error, value, onChangeText, placeholder, ke
                     placeholder={placeholder}
                 />
                 {error === false ? ( 
-                    <Error name='error' color="red" size={27} style={styles.errorIcon} />
+                    <Error name='error' color="red" size={25} style={styles.errorIcon} />
                 ) : value ? (
-                    <Feather name='check-circle' color="green" size={27} style={styles.errorIcon} />
+                    <Feather name='check-circle' color="green" size={25} style={styles.errorIcon} />
                 ) : null}
             </View>
             <Text style={styles.error}>{notification}</Text>

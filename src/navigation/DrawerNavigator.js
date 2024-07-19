@@ -19,9 +19,10 @@ const screenOptions = (title, iconName) => ({
     ),
     drawerLabelStyle: { fontWeight: 'bold' },
     drawerItemStyle: { marginVertical: 5 },
-    drawerActiveTintColor: '#e91e63',
+    drawerActiveTintColor: '#8BED82',
     drawerInactiveTintColor: '#000',
     drawerActiveBackgroundColor: '#f1f1f1',
+    headerTitleAlign: 'center',  // Đưa tiêu đề vào giữa
     drawerInactiveBackgroundColor: '#fff',
     headerShown: true,
 });
@@ -29,8 +30,7 @@ const DrawerNavigator = () => {
     const user = auth.currentUser;  // Lấy thông tin người dùng hiện tại
     return (
         <Drawer.Navigator drawerContent={(props) => 
-        <CustomDrawerContent {...props} user={user}
-        />}>
+        <CustomDrawerContent {...props} user={user}/>} screenOptions={{headerStyle: {backgroundColor: '#F5F5F5'}}} >
             <Drawer.Screen
                 name="OrderProcessing"
                 component={OrderProcessing}

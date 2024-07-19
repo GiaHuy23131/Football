@@ -16,6 +16,8 @@ const DropDownPickerComponents = ({open, value,items, setOpen, setValue, setItem
                 setValue={setValue}
                 setItems={setItems}
                 onChangeValue={onChangeValue}
+                selectedItemContainerStyle={{ backgroundColor: '#8BED82'}} // Màu nền của item khi nhấn giữ
+    
                 containerStyle={{ marginBottom: open ? size : 0 }} // Điều chỉnh marginBottom khi mở dropdown
                 
             />

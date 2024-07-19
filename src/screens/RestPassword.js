@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { SafeAreaView, View, Text, TouchableOpacity, Keyboard, TouchableWithoutFeedback } from "react-native";
 import { useNavigation, useRoute } from '@react-navigation/native';
 //styles
@@ -11,13 +11,13 @@ import ButtonBack from "../components/ButtonBack";
 
 const RestPassword = () => {
     const route = useRoute();// route
-    const {phone} = route.params;    // Lấy dữ liệu từ route.params
+    const { phone } = route.params;    // Lấy dữ liệu từ route.params
     const [newPassword, setNewPassword] = useState('');
     const [newPasswordAgain, setNewPasswordAgain] = useState('');
     //check
     let notification;
     const checkNewPassword = () => {
-        if(newPassword && newPassword.length <= 6){
+        if (newPassword && newPassword.length <= 6) {
             notification = "Dài thêm nữa"
             return false;
         }
@@ -26,9 +26,9 @@ const RestPassword = () => {
         //Close keyborad
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <SafeAreaView style={styles.container}>
-                <ButtonBack  />
+                <ButtonBack />
                 <Text style={styles.titleRegister}>Đặt Lại Mật Khẩu</Text>
-                <Text style={{textAlign: 'center', fontSize: 20}}>Số điện thoại: {phone}</Text>
+                <Text style={{ textAlign: 'center', fontSize: 20 }}>Số điện thoại: {phone}</Text>
                 <InputComponent
                     title="Mật khẩu mới"
                     keyboardType="default"
@@ -47,10 +47,13 @@ const RestPassword = () => {
                     value={newPasswordAgain}
                     onChangeText={(text) => setNewPasswordAgain(text)}
                 />
-                <ButtonConfirm
-                onPress={() => handleRestPassword(phone)}
-                    title="Xác nhận"
-                />  
+                <View style={styles.buttonView}>
+                    <ButtonConfirm
+                        onPress={() => handleRestPassword(phone)}
+                        title="Xác nhận"
+                    />
+                </View>
+
 
             </SafeAreaView>
         </TouchableWithoutFeedback>
